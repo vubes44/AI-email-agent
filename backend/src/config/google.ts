@@ -9,6 +9,9 @@ export const oauth2Client = new google.auth.OAuth2(
   process.env.GOOGLE_REDIRECT_URI,
 );
 
-oauth2Client.setCredentials({
-  refresh_token: process.env.GOOGLE_REFRESH_TOKEN,
-});
+export let savedTokens: any = null;
+
+export function setTokens(tokens: any) {
+  savedTokens = tokens;
+  oauth2Client.setCredentials(tokens);
+}
