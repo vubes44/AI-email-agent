@@ -4,6 +4,7 @@ import authRoutes from "./routes/auth.js";
 const app = express();
 
 app.use("/auth", authRoutes);
+app.use("/", authRoutes);
 
 app.get("/", (req, res) => {
   res.send("AI Email Agent działa");
