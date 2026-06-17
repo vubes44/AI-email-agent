@@ -23,7 +23,6 @@ router.get("/oauth2callback", async (req, res) => {
     setTokens(tokens);
 
     console.log("🔥 TOKENY ZAPISANE");
-    console.log(tokens);
 
     res.send("Autoryzacja zakończona 🚀 możesz wrócić do aplikacji");
   } catch (error) {
@@ -42,14 +41,62 @@ router.get("/emails", async (req, res) => {
 
     oauth2Client.setCredentials(savedTokens);
 
-    const gmail = google.gmail({ version: "v1", auth: oauth2Client });
+    const gmail = google.gmail({
+      version: "v1",
+      auth: oauth2Client,
+    });
 
     const response = await gmail.users.messages.list({
       userId: "me",
-      maxResults: 10,
     });
 
-    res.json(response.data);
+    const messages = response.data.messages || [];
+
+    const emails = [];
+
+    for (const message of messages) {
+      const email = await gmail.users.messages.get({
+        userId: "me",
+        id: message.id!,
+        format: "full",
+      });
+
+      const headers = email.data.payload?.headers || [];
+
+      const subject =
+        headers.find((h) => h.name === "Subject")?.value || "Brak tematu";
+
+      const from =
+        headers.find((h) => h.name === "From")?.value || "Nieznany nadawca";
+
+      const date = headers.find((h) => h.name === "Date")?.value || "Brak daty";
+
+      let body = "";
+
+      if (email.data.payload?.body?.data) {
+        body = Buffer.from(email.data.payload.body.data, "base64").toString(
+          "utf-8",
+        );
+      } else if (email.data.payload?.parts) {
+        const textPart = email.data.payload.parts.find(
+          (part) => part.mimeType === "text/plain",
+        );
+
+        if (textPart?.body?.data) {
+          body = Buffer.from(textPart.body.data, "base64").toString("utf-8");
+        }
+      }
+
+      emails.push({
+        id: message.id,
+        subject,
+        from,
+        date,
+        body,
+      });
+    }
+
+    res.json(emails);
   } catch (error: any) {
     console.error("GMAIL ERROR:");
     console.dir(error, { depth: null });
