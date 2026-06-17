@@ -41,5 +41,9 @@ ${body}
     contents: prompt,
   });
 
-  return response.text;
+  const text = response.text || "";
+
+  const cleaned = text.replace("```json", "").replace("```", "").trim();
+
+  return JSON.parse(cleaned);
 }
