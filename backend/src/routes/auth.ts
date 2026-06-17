@@ -136,4 +136,81 @@ router.get("/test-ai", async (req, res) => {
   }
 });
 
+router.get("/latest-email-ai", async (req, res) => {
+  try {
+    if (!savedTokens) {
+      return res.status(401).json({
+        message: "Brak tokena",
+      });
+    }
+
+    oauth2Client.setCredentials(savedTokens);
+
+    const gmail = google.gmail({
+      version: "v1",
+      auth: oauth2Client,
+    });
+
+    const listResponse = await gmail.users.messages.list({
+      userId: "me",
+      maxResults: 1,
+    });
+
+    const message = listResponse.data.messages?.[0];
+
+    if (!message) {
+      return res.json({
+        message: "Brak maili",
+      });
+    }
+
+    const email = await gmail.users.messages.get({
+      userId: "me",
+      id: message.id!,
+      format: "full",
+    });
+
+    const headers = email.data.payload?.headers || [];
+
+    const subject =
+      headers.find((h) => h.name === "Subject")?.value || "Brak tematu";
+
+    const from =
+      headers.find((h) => h.name === "From")?.value || "Nieznany nadawca";
+
+    let body = "";
+
+    if (email.data.payload?.body?.data) {
+      body = Buffer.from(email.data.payload.body.data, "base64").toString(
+        "utf8",
+      );
+    } else if (email.data.payload?.parts) {
+      const textPart = email.data.payload.parts.find(
+        (part) => part.mimeType === "text/plain",
+      );
+
+      if (textPart?.body?.data) {
+        body = Buffer.from(textPart.body.data, "base64").toString("utf8");
+      }
+    }
+
+    const analysis = await analyzeEmail(subject, body);
+
+    res.json({
+      email: {
+        subject,
+        from,
+        body,
+      },
+      analysis,
+    });
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({
+      message: "Błąd",
+    });
+  }
+});
+
 export default router;
