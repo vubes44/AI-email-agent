@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { oauth2Client, setTokens, savedTokens } from "../config/google.js";
 import { google } from "googleapis";
+import { analyzeEmail } from "../services/gemini.js";
 
 const router = Router();
 
@@ -105,6 +106,32 @@ router.get("/emails", async (req, res) => {
       message: "Błąd pobierania maili",
       error: error?.message,
       details: error?.response?.data,
+    });
+  }
+});
+
+router.get("/test-ai", async (req, res) => {
+  try {
+    const result = await analyzeEmail(
+      "Jaki dron kupić?",
+      `
+      Dzień dobry,
+
+      Szukam drona do filmowania gór.
+
+      Budżet około 5000 zł.
+
+      Pozdrawiam
+      Jan
+      `,
+    );
+
+    res.send(result);
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({
+      message: "Błąd Gemini",
     });
   }
 });
