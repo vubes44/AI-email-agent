@@ -204,11 +204,13 @@ router.get("/latest-email-ai", async (req, res) => {
       },
       analysis,
     });
-  } catch (error) {
-    console.error(error);
+  } catch (error: any) {
+    console.error("LATEST EMAIL AI ERROR:");
+    console.dir(error, { depth: null });
 
     res.status(500).json({
       message: "Błąd",
+      error: error?.message,
     });
   }
 });
