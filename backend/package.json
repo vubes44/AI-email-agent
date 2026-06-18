@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
-    "main": "src/index.ts",
+  "main": "src/index.ts",
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "build": "tsc",
@@ -15,6 +15,7 @@
   "dependencies": {
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
+    "firebase-admin": "^14.0.0",
     "googleapis": "^173.0.0"
   },
   "devDependencies": {
