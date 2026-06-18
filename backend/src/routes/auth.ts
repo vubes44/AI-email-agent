@@ -181,20 +181,34 @@ router.get("/latest-email-ai", async (req, res) => {
     let body = "";
 
     if (email.data.payload?.body?.data) {
-      body = Buffer.from(email.data.payload.body.data, "base64").toString(
-        "utf8",
-      );
+      body = Buffer.from(email.data.payload.body.data, "utf8").toString("utf8");
     } else if (email.data.payload?.parts) {
       const textPart = email.data.payload.parts.find(
         (part) => part.mimeType === "text/plain",
       );
 
       if (textPart?.body?.data) {
-        body = Buffer.from(textPart.body.data, "base64").toString("utf8");
+        body = Buffer.from(textPart.body.data, "utf8").toString("utf8");
       }
     }
 
-    const analysis = await analyzeEmail(subject, body);
+    let analysisRaw = await analyzeEmail(subject, body);
+
+    let analysis;
+
+    try {
+      const cleaned = analysisRaw
+        .replace("```json", "")
+        .replace("```", "")
+        .trim();
+
+      analysis = JSON.parse(cleaned);
+    } catch (e) {
+      return res.status(500).json({
+        message: "Błąd parsowania Gemini",
+        raw: analysisRaw,
+      });
+    }
 
     res.json({
       email: {
