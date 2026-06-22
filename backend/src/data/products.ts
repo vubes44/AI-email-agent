@@ -375,4 +375,417 @@ export const products = [
     created_at: null,
     updated_at: null,
   },
+  {
+    id: "dji-neo-2",
+
+    name: "DJI Neo 2",
+    variant: "Standard",
+
+    price: 1028,
+    currency: "PLN",
+    quantity: 15,
+
+    description:
+      "Ultralekki dron DJI do selfie i nagrywania vlogów. Obsługuje start z dłoni, inteligentny tracking oraz nagrywanie w 4K.",
+
+    category: "selfie",
+
+    weight: 151,
+    flight_time: 19,
+    transmission_range: 10000,
+
+    cmos: "1/2-inch CMOS",
+    photo_resolution: "12 MP",
+    video_resolution: "4K 100fps",
+
+    max_speed: "12 m/s",
+    obstacle_sensing:
+      "Omnidirectional monocular vision + Forward LiDAR + Downward infrared sensor",
+
+    intelligent_flight_features: ["Palm Takeoff", "Tracking"],
+
+    images: [],
+
+    active: true,
+
+    created_at: null,
+    updated_at: null,
+  },
+
+  {
+    id: "dji-neo-2-dji-rc-n3-fly-more-combo",
+
+    name: "DJI Neo 2",
+    variant: "DJI RC-N3 Fly More Combo",
+
+    price: 1649,
+    currency: "PLN",
+    quantity: 30,
+
+    description:
+      "DJI Neo 2 z kontrolerem DJI RC-N3 oraz zestawem Fly More Combo z dodatkowymi akumulatorami i akcesoriami.",
+
+    category: "selfie",
+
+    weight: 151,
+    flight_time: 19,
+    transmission_range: 10000,
+
+    cmos: "1/2-inch CMOS",
+    photo_resolution: "12 MP",
+    video_resolution: "4K 100fps",
+
+    max_speed: "12 m/s",
+    obstacle_sensing:
+      "Omnidirectional monocular vision + Forward LiDAR + Downward infrared sensor",
+
+    intelligent_flight_features: ["Palm Takeoff", "Tracking"],
+
+    images: [],
+
+    active: true,
+
+    created_at: null,
+    updated_at: null,
+  },
+
+  {
+    id: "dji-neo-2-motion-controller-fly-more-combo",
+
+    name: "DJI Neo 2",
+    variant: "Motion Controller Fly More Combo",
+
+    price: 2399,
+    currency: "PLN",
+    quantity: 10,
+
+    description:
+      "DJI Neo 2 z Motion Controller oraz zestawem Fly More Combo zapewniającym wygodne sterowanie gestami i dłuższy czas użytkowania.",
+
+    category: "selfie",
+
+    weight: 151,
+    flight_time: 19,
+    transmission_range: 10000,
+
+    cmos: "1/2-inch CMOS",
+    photo_resolution: "12 MP",
+    video_resolution: "4K 100fps",
+
+    max_speed: "12 m/s",
+    obstacle_sensing:
+      "Omnidirectional monocular vision + Forward LiDAR + Downward infrared sensor",
+
+    intelligent_flight_features: ["Palm Takeoff", "Tracking"],
+
+    images: [],
+
+    active: true,
+
+    created_at: null,
+    updated_at: null,
+  },
+  {
+    id: "dji-flip-dji-rc-n3",
+
+    name: "DJI Flip",
+    variant: "DJI RC-N3",
+
+    price: 2069,
+    currency: "PLN",
+    quantity: 20,
+
+    description:
+      "Kompaktowy dron do selfie poniżej 249 g z kamerą 48 MP i funkcjami automatycznego śledzenia.",
+
+    category: "camera",
+
+    weight: 249,
+    flight_time: 31,
+    transmission_range: 8000,
+
+    cmos: "1/1.3-inch CMOS",
+    photo_resolution: "48 MP",
+    video_resolution: "4K 100fps",
+
+    max_speed: "16 m/s",
+    obstacle_sensing: "Forward 3D Infrared + Downward Vision",
+
+    intelligent_flight_features: [
+      "FocusTrack",
+      "MasterShots",
+      "QuickShots",
+      "Hyperlapse",
+      "Panorama",
+      "Cruise Control",
+    ],
+
+    images: [],
+
+    active: true,
+
+    created_at: null,
+    updated_at: null,
+  },
+
+  {
+    id: "dji-flip-dji-rc-2",
+
+    name: "DJI Flip",
+    variant: "DJI RC 2",
+
+    price: 2999,
+    currency: "PLN",
+    quantity: 30,
+
+    description:
+      "Kompaktowy dron do selfie poniżej 249 g z kamerą 48 MP i kontrolerem DJI RC 2 z wbudowanym ekranem.",
+
+    category: "camera",
+
+    weight: 249,
+    flight_time: 31,
+    transmission_range: 8000,
+
+    cmos: "1/1.3-inch CMOS",
+    photo_resolution: "48 MP",
+    video_resolution: "4K 100fps",
+
+    max_speed: "16 m/s",
+    obstacle_sensing: "Forward 3D Infrared + Downward Vision",
+
+    intelligent_flight_features: [
+      "FocusTrack",
+      "MasterShots",
+      "QuickShots",
+      "Hyperlapse",
+      "Panorama",
+      "Cruise Control",
+    ],
+
+    images: [],
+
+    active: true,
+
+    created_at: null,
+    updated_at: null,
+  },
+
+  {
+    id: "dji-flip-dji-rc-2-fly-more-combo",
+
+    name: "DJI Flip",
+    variant: "DJI RC 2 Fly More Combo",
+
+    price: 3648,
+    currency: "PLN",
+    quantity: 30,
+
+    description:
+      "DJI Flip Fly More Combo z kontrolerem DJI RC 2, dodatkowymi akumulatorami i akcesoriami.",
+
+    category: "camera",
+
+    weight: 249,
+    flight_time: 31,
+    transmission_range: 8000,
+
+    cmos: "1/1.3-inch CMOS",
+    photo_resolution: "48 MP",
+    video_resolution: "4K 100fps",
+
+    max_speed: "16 m/s",
+    obstacle_sensing: "Forward 3D Infrared + Downward Vision",
+
+    intelligent_flight_features: [
+      "FocusTrack",
+      "MasterShots",
+      "QuickShots",
+      "Hyperlapse",
+      "Panorama",
+      "Cruise Control",
+    ],
+
+    images: [],
+
+    active: true,
+
+    created_at: null,
+    updated_at: null,
+  },
+  {
+    id: "dji-mini-5-pro-dji-rc-n3",
+
+    name: "DJI Mini 5 Pro",
+    variant: "DJI RC-N3",
+
+    price: 3649,
+    currency: "PLN",
+    quantity: 50,
+
+    description:
+      "Profesjonalny dron klasy mini poniżej 249 g z kamerą 1-inch CMOS 50 MP oraz zaawansowanym systemem omijania przeszkód.",
+
+    category: "camera",
+
+    weight: 249.9,
+    flight_time: 52,
+    transmission_range: 10000,
+
+    cmos: "1-inch CMOS",
+    photo_resolution: "50 MP",
+    video_resolution: "4K 120fps",
+
+    max_speed: "19 m/s",
+    obstacle_sensing: "Omnidirectional + LiDAR",
+
+    intelligent_flight_features: [
+      "FocusTrack",
+      "MasterShots",
+      "QuickShots",
+      "Hyperlapse",
+      "Panorama",
+      "Waypoint Flight",
+      "Cruise Control",
+    ],
+
+    images: [],
+
+    active: true,
+
+    created_at: null,
+    updated_at: null,
+  },
+
+  {
+    id: "dji-mini-5-pro-dji-rc-n3-fly-more-combo",
+
+    name: "DJI Mini 5 Pro",
+    variant: "DJI RC-N3 Fly More Combo",
+
+    price: 3929,
+    currency: "PLN",
+    quantity: 30,
+
+    description:
+      "DJI Mini 5 Pro Fly More Combo z kontrolerem DJI RC-N3 oraz dodatkowymi akumulatorami i akcesoriami.",
+
+    category: "camera",
+
+    weight: 249.9,
+    flight_time: 52,
+    transmission_range: 10000,
+
+    cmos: "1-inch CMOS",
+    photo_resolution: "50 MP",
+    video_resolution: "4K 120fps",
+
+    max_speed: "19 m/s",
+    obstacle_sensing: "Omnidirectional + LiDAR",
+
+    intelligent_flight_features: [
+      "FocusTrack",
+      "MasterShots",
+      "QuickShots",
+      "Hyperlapse",
+      "Panorama",
+      "Waypoint Flight",
+      "Cruise Control",
+    ],
+
+    images: [],
+
+    active: true,
+
+    created_at: null,
+    updated_at: null,
+  },
+
+  {
+    id: "dji-mini-5-pro-dji-rc-2-fly-more-combo",
+
+    name: "DJI Mini 5 Pro",
+    variant: "DJI RC 2 Fly More Combo",
+
+    price: 4999,
+    currency: "PLN",
+    quantity: 40,
+
+    description:
+      "DJI Mini 5 Pro Fly More Combo z kontrolerem DJI RC 2 z wbudowanym ekranem oraz dodatkowymi akumulatorami.",
+
+    category: "camera",
+
+    weight: 249.9,
+    flight_time: 52,
+    transmission_range: 10000,
+
+    cmos: "1-inch CMOS",
+    photo_resolution: "50 MP",
+    video_resolution: "4K 120fps",
+
+    max_speed: "19 m/s",
+    obstacle_sensing: "Omnidirectional + LiDAR",
+
+    intelligent_flight_features: [
+      "FocusTrack",
+      "MasterShots",
+      "QuickShots",
+      "Hyperlapse",
+      "Panorama",
+      "Waypoint Flight",
+      "Cruise Control",
+    ],
+
+    images: [],
+
+    active: true,
+
+    created_at: null,
+    updated_at: null,
+  },
+
+  {
+    id: "dji-mini-5-pro-dji-rc-2-fly-more-combo-plus",
+
+    name: "DJI Mini 5 Pro",
+    variant: "DJI RC 2 Fly More Combo Plus",
+
+    price: 5222,
+    currency: "PLN",
+    quantity: 25,
+
+    description:
+      "Najbogatszy zestaw DJI Mini 5 Pro z kontrolerem DJI RC 2 oraz akumulatorami Intelligent Flight Battery Plus.",
+
+    category: "camera",
+
+    weight: 249.9,
+    flight_time: 52,
+    transmission_range: 10000,
+
+    cmos: "1-inch CMOS",
+    photo_resolution: "50 MP",
+    video_resolution: "4K 120fps",
+
+    max_speed: "19 m/s",
+    obstacle_sensing: "Omnidirectional + LiDAR",
+
+    intelligent_flight_features: [
+      "FocusTrack",
+      "MasterShots",
+      "QuickShots",
+      "Hyperlapse",
+      "Panorama",
+      "Waypoint Flight",
+      "Cruise Control",
+    ],
+
+    images: [],
+
+    active: true,
+
+    created_at: null,
+    updated_at: null,
+  },
 ];
