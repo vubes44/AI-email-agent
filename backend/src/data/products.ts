@@ -788,4 +788,266 @@ export const products = [
     created_at: null,
     updated_at: null,
   },
+  {
+    id: "dji-air-3s-dji-rc-n3",
+
+    name: "DJI Air 3S",
+    variant: "DJI RC-N3",
+
+    price: 4999,
+    currency: "PLN",
+    quantity: 50,
+
+    description:
+      "Profesjonalny dron z dwiema kamerami, 1-inch CMOS 50 MP oraz teleobiektywem 70 mm, wyposażony w dookólny system wykrywania przeszkód z LiDAR.",
+
+    category: "camera",
+
+    weight: 724,
+    flight_time: 45,
+    transmission_range: 10000,
+
+    cmos: "Dual Camera (1-inch CMOS + 1/1.3-inch CMOS)",
+    photo_resolution: "50 MP / 48 MP",
+    video_resolution: "4K 120fps",
+
+    max_speed: "21 m/s",
+    obstacle_sensing: "Omnidirectional + LiDAR",
+
+    intelligent_flight_features: [
+      "FocusTrack",
+      "MasterShots",
+      "QuickShots",
+      "Hyperlapse",
+      "Panorama",
+      "Waypoint Flight",
+      "Cruise Control",
+    ],
+
+    images: [],
+
+    active: true,
+
+    created_at: null,
+    updated_at: null,
+  },
+
+  {
+    id: "dji-air-3s-dji-rc-n3-fly-more-combo",
+
+    name: "DJI Air 3S",
+    variant: "DJI RC-N3 Fly More Combo",
+
+    price: 5299,
+    currency: "PLN",
+    quantity: 30,
+
+    description:
+      "DJI Air 3S Fly More Combo z kontrolerem DJI RC-N3 oraz dodatkowymi akumulatorami i akcesoriami.",
+
+    category: "camera",
+
+    weight: 724,
+    flight_time: 45,
+    transmission_range: 10000,
+
+    cmos: "Dual Camera (1-inch CMOS + 1/1.3-inch CMOS)",
+    photo_resolution: "50 MP / 48 MP",
+    video_resolution: "4K 120fps",
+
+    max_speed: "21 m/s",
+    obstacle_sensing: "Omnidirectional + LiDAR",
+
+    intelligent_flight_features: [
+      "FocusTrack",
+      "MasterShots",
+      "QuickShots",
+      "Hyperlapse",
+      "Panorama",
+      "Waypoint Flight",
+      "Cruise Control",
+    ],
+
+    images: [],
+
+    active: true,
+
+    created_at: null,
+    updated_at: null,
+  },
+
+  {
+    id: "dji-air-3s-dji-rc-2-fly-more-combo",
+
+    name: "DJI Air 3S",
+    variant: "DJI RC 2 Fly More Combo",
+
+    price: 6499,
+    currency: "PLN",
+    quantity: 40,
+
+    description:
+      "DJI Air 3S Fly More Combo z kontrolerem DJI RC 2 z wbudowanym ekranem oraz dodatkowymi akumulatorami.",
+
+    category: "camera",
+
+    weight: 724,
+    flight_time: 45,
+    transmission_range: 10000,
+
+    cmos: "Dual Camera (1-inch CMOS + 1/1.3-inch CMOS)",
+    photo_resolution: "50 MP / 48 MP",
+    video_resolution: "4K 120fps",
+
+    max_speed: "21 m/s",
+    obstacle_sensing: "Omnidirectional + LiDAR",
+
+    intelligent_flight_features: [
+      "FocusTrack",
+      "MasterShots",
+      "QuickShots",
+      "Hyperlapse",
+      "Panorama",
+      "Waypoint Flight",
+      "Cruise Control",
+    ],
+
+    images: [],
+
+    active: true,
+
+    created_at: null,
+    updated_at: null,
+  },
+  {
+    id: "dji-mavic-4-pro-dji-rc-2",
+
+    name: "DJI Mavic 4 Pro",
+    variant: "DJI RC 2",
+
+    price: 8499,
+    currency: "PLN",
+    quantity: 15,
+
+    description:
+      "Najbardziej profesjonalny dron DJI z potrójnym systemem kamer, główną kamerą Hasselblad 100 MP oraz zaawansowanym systemem omijania przeszkód z LiDAR.",
+
+    category: "camera",
+
+    weight: 1063,
+    flight_time: 51,
+    transmission_range: 15000,
+
+    cmos: "Triple Camera (4/3 CMOS + 1/1.3-inch CMOS + 1/1.5-inch CMOS)",
+    photo_resolution: "100 MP / 48 MP / 50 MP",
+    video_resolution: "6K 60fps",
+
+    max_speed: "25 m/s",
+    obstacle_sensing: "Omnidirectional + LiDAR",
+
+    intelligent_flight_features: [
+      "FocusTrack",
+      "MasterShots",
+      "QuickShots",
+      "Hyperlapse",
+      "Panorama",
+      "Waypoint Flight",
+      "Cruise Control",
+    ],
+
+    images: [],
+
+    active: true,
+
+    created_at: null,
+    updated_at: null,
+  },
+
+  {
+    id: "dji-mavic-4-pro-dji-rc-2-fly-more-combo",
+
+    name: "DJI Mavic 4 Pro",
+    variant: "DJI RC 2 Fly More Combo",
+
+    price: 10699,
+    currency: "PLN",
+    quantity: 30,
+
+    description:
+      "DJI Mavic 4 Pro Fly More Combo z kontrolerem DJI RC 2 oraz dodatkowymi akumulatorami i akcesoriami.",
+
+    category: "camera",
+
+    weight: 1063,
+    flight_time: 51,
+    transmission_range: 15000,
+
+    cmos: "Triple Camera (4/3 CMOS + 1/1.3-inch CMOS + 1/1.5-inch CMOS)",
+    photo_resolution: "100 MP / 48 MP / 50 MP",
+    video_resolution: "6K 60fps",
+
+    max_speed: "25 m/s",
+    obstacle_sensing: "Omnidirectional + LiDAR",
+
+    intelligent_flight_features: [
+      "FocusTrack",
+      "MasterShots",
+      "QuickShots",
+      "Hyperlapse",
+      "Panorama",
+      "Waypoint Flight",
+      "Cruise Control",
+    ],
+
+    images: [],
+
+    active: true,
+
+    created_at: null,
+    updated_at: null,
+  },
+
+  {
+    id: "dji-mavic-4-pro-creator-combo",
+
+    name: "DJI Mavic 4 Pro",
+    variant: "Creator Combo",
+
+    price: 14499,
+    currency: "PLN",
+    quantity: 40,
+
+    description:
+      "Najbogatszy zestaw DJI Mavic 4 Pro Creator Combo z pamięcią 512 GB, obsługą H.264 ALL-I oraz profesjonalnymi akcesoriami.",
+
+    category: "camera",
+
+    weight: 1063,
+    flight_time: 51,
+    transmission_range: 15000,
+
+    cmos: "Triple Camera (4/3 CMOS + 1/1.3-inch CMOS + 1/1.5-inch CMOS)",
+    photo_resolution: "100 MP / 48 MP / 50 MP",
+    video_resolution: "6K 60fps",
+
+    max_speed: "25 m/s",
+    obstacle_sensing: "Omnidirectional + LiDAR",
+
+    intelligent_flight_features: [
+      "FocusTrack",
+      "MasterShots",
+      "QuickShots",
+      "Hyperlapse",
+      "Panorama",
+      "Waypoint Flight",
+      "Cruise Control",
+    ],
+
+    images: [],
+
+    active: true,
+
+    created_at: null,
+    updated_at: null,
+  },
 ];
