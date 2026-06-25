@@ -1,4 +1,5 @@
 import { db } from "../config/firebase.js";
+import { FieldValue } from "firebase-admin/firestore";
 
 export async function saveConversation(
   email: string,
@@ -12,7 +13,7 @@ export async function saveConversation(
       {
         email,
 
-        messages: [
+        messages: FieldValue.arrayUnion(
           {
             role: "user",
             content: userMessage,
@@ -23,7 +24,7 @@ export async function saveConversation(
             content: aiResponse,
             createdAt: new Date(),
           },
-        ],
+        ),
       },
       { merge: true },
     );
