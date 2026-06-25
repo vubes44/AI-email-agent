@@ -195,8 +195,9 @@ router.get("/latest-email-ai", async (req, res) => {
       }
     }
 
-    // ✅ GEMINI (już zwraca OBIEKT)
     const analysis = await analyzeEmail(subject, body);
+
+    await saveConversation(from, body, analysis.email_response);
 
     res.json({
       email: {
