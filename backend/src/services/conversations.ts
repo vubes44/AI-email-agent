@@ -28,3 +28,13 @@ export async function saveConversation(
       { merge: true },
     );
 }
+
+export async function getConversation(email: string) {
+  const doc = await db.collection("conversations").doc(email).get();
+
+  if (!doc.exists) {
+    return null;
+  }
+
+  return doc.data();
+}
