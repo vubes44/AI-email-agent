@@ -2,6 +2,7 @@ import { Router } from "express";
 import { oauth2Client, setTokens, savedTokens } from "../config/google.js";
 import { google } from "googleapis";
 import { analyzeEmail } from "../services/gemini.js";
+import { saveConversation } from "../services/conversations.js";
 
 const router = Router();
 
