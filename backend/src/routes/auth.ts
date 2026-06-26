@@ -195,6 +195,11 @@ router.get("/latest-email-ai", async (req, res) => {
       }
     }
 
+    body = body
+      .split(/napisał\(a\):|On .*wrote:|Od:/)[0]
+      .replace(/^>.*$/gm, "")
+      .trim();
+
     const analysis = await analyzeEmail(subject, body);
 
     await saveConversation(from, body, analysis.email_response);

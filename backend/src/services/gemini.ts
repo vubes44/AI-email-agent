@@ -1,11 +1,16 @@
 import { GoogleGenAI } from "@google/genai";
 import { getProducts } from "./products.js";
+import { getConversation } from "./conversations.js";
 
 const ai = new GoogleGenAI({
   apiKey: process.env.GEMINI_API_KEY,
 });
 
-export async function analyzeEmail(subject: string, body: string) {
+export async function analyzeEmail(
+  email: string,
+  subject: string,
+  body: string,
+) {
   const products = await getProducts();
 
   const productsContext = products
