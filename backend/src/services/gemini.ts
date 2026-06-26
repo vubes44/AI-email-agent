@@ -13,6 +13,19 @@ export async function analyzeEmail(
 ) {
   const products = await getProducts();
 
+  const conversation = await getConversation(email);
+
+  let conversationContext = "Brak wcześniejszej rozmowy.";
+
+  if (conversation?.messages?.length) {
+    conversationContext = conversation.messages
+      .map(
+        (message: any) =>
+          `${message.role === "user" ? "Klient" : "AI"}: ${message.content}`,
+      )
+      .join("\n\n");
+  }
+
   const productsContext = products
     .map(
       (product: any) => `
@@ -35,6 +48,18 @@ Masz odpowiadać WYŁĄCZNIE na podstawie produktów znajdujących się w bazie.
 Dostępne produkty:
 
 ${productsContext}
+
+Historia rozmowy z klientem:
+
+${conversationContext}
+
+Nowa wiadomość klienta:
+
+TEMAT:
+${subject}
+
+TREŚĆ:
+${body}
 
 Przeanalizuj wiadomość klienta.
 
@@ -63,6 +88,8 @@ Jeżeli klient pyta o produkt:
 Jeżeli nie wiadomo:
 - ustaw intent = "unknown"
 
+Jeżeli klient zadaje krótkie pytanie (np. "jaki ma zasięg?", "a czas lotu?", "czy ma D-Log?"), wykorzystaj historię rozmowy, aby ustalić, o który produkt chodzi.
+
 Zwróć WYŁĄCZNIE poprawny JSON.
 
 Format:
@@ -74,12 +101,6 @@ Format:
   "budget": null,
   "email_response": ""
 }
-
-TEMAT:
-${subject}
-
-TREŚĆ:
-${body}
 `;
 
   const response = await ai.models.generateContent({

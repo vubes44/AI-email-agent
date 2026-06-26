@@ -114,19 +114,19 @@ router.get("/emails", async (req, res) => {
 router.get("/test-ai", async (req, res) => {
   try {
     const result = await analyzeEmail(
+      "test@test.pl",
       "Jaki dron kupić?",
       `
-      Dzień dobry,
+Dzień dobry,
 
-      Szukam drona do filmowania gór.
+Szukam drona do filmowania gór.
 
-      Budżet około 5000 zł.
+Budżet około 5000 zł.
 
-      Pozdrawiam
-      Jan
-      `,
+Pozdrawiam
+Jan
+`,
     );
-
     res.send(result);
   } catch (error) {
     console.error(error);
@@ -200,7 +200,7 @@ router.get("/latest-email-ai", async (req, res) => {
       .replace(/^>.*$/gm, "")
       .trim();
 
-    const analysis = await analyzeEmail(subject, body);
+    const analysis = await analyzeEmail(from, subject, body);
 
     await saveConversation(from, body, analysis.email_response);
 
