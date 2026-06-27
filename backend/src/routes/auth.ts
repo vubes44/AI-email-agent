@@ -202,7 +202,12 @@ router.get("/latest-email-ai", async (req, res) => {
 
     const analysis = await analyzeEmail(from, subject, body);
 
-    await saveConversation(from, body, analysis.email_response);
+    await saveConversation(
+      from,
+      body,
+      analysis.email_response,
+      analysis.product_name,
+    );
 
     res.json({
       email: {
