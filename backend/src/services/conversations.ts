@@ -13,6 +13,7 @@ export async function saveConversation(
     .set(
       {
         email,
+        currentProduct,
 
         messages: FieldValue.arrayUnion(
           {
