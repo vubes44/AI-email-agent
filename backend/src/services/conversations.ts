@@ -5,6 +5,7 @@ export async function saveConversation(
   email: string,
   userMessage: string,
   aiResponse: string,
+  currentProduct?: string,
 ) {
   await db
     .collection("conversations")
