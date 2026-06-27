@@ -26,6 +26,8 @@ export async function analyzeEmail(
       .join("\n\n");
   }
 
+  const currentProduct = conversation?.currentProduct || "Brak";
+
   const productsContext = products
     .map(
       (product: any) => `
