@@ -3,6 +3,7 @@ import { oauth2Client, setTokens, savedTokens } from "../config/google.js";
 import { google } from "googleapis";
 import { analyzeEmail } from "../services/gemini.js";
 import { saveConversation } from "../services/conversations.js";
+import { sendEmail } from "../services/gmail.js";
 
 const router = Router();
 
@@ -211,6 +212,8 @@ router.get("/latest-email-ai", async (req, res) => {
       analysis.email_response,
       analysis.product_name,
     );
+
+    await sendEmail(from, subject, analysis.email_response);
 
     res.json({
       email: {
