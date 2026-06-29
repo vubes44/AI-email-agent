@@ -197,6 +197,8 @@ router.get("/latest-email-ai", async (req, res) => {
       format: "full",
     });
 
+    const threadId = email.data.threadId!;
+
     const headers = email.data.payload?.headers || [];
 
     const subject =
@@ -229,6 +231,7 @@ router.get("/latest-email-ai", async (req, res) => {
     const analysis = await analyzeEmail(from, subject, body);
 
     await saveConversation(
+      threadId,
       from,
       body,
       analysis.email_response,
