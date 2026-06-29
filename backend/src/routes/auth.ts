@@ -158,14 +158,30 @@ router.get("/latest-email-ai", async (req, res) => {
 
     const listResponse = await gmail.users.messages.list({
       userId: "me",
-      maxResults: 1,
+      maxResults: 40,
     });
 
-    const message = listResponse.data.messages?.[0];
+    let message = null;
+
+    for (const msg of listResponse.data.messages || []) {
+      const full = await gmail.users.messages.get({
+        userId: "me",
+        id: msg.id!,
+        format: "metadata",
+      });
+
+      const from =
+        full.data.payload?.headers?.find((h) => h.name === "From")?.value || "";
+
+      if (!from.includes("aidlasklepuzdronamidji@gmail.com")) {
+        message = msg;
+        break;
+      }
+    }
 
     if (!message) {
       return res.json({
-        message: "Brak maili",
+        message: "Brak nowych wiadomości od klientów",
       });
     }
 
