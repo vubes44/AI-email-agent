@@ -7,13 +7,14 @@ const ai = new GoogleGenAI({
 });
 
 export async function analyzeEmail(
+  threadId: string,
   email: string,
   subject: string,
   body: string,
 ) {
   const products = await getProducts();
 
-  const conversation = await getConversation(email);
+  const conversation = await getConversation(threadId);
 
   let conversationContext = "Brak wcześniejszej rozmowy.";
 
@@ -55,6 +56,10 @@ Historia rozmowy z klientem:
 
 ${conversationContext}
 
+Aktualnie rekomendowany produkt:
+
+${currentProduct}
+
 Nowa wiadomość klienta:
 
 TEMAT:
@@ -76,13 +81,7 @@ porównanie modeli, budżet lub wybór produktu:
 - ustaw intent = "product_question"
 
 Ustaw intent = "new_order" WYŁĄCZNIE wtedy,
-gdy klient jednoznacznie deklaruje zakup,
-np.:
-- kupuję
-- biorę
-- zamawiam
-- proszę o realizację zamówienia
-- chcę zamówić
+gdy klient jednoznacznie deklaruje zakup.
 
 Jeżeli klient pyta o produkt:
 - ustaw intent = "product_question"
@@ -92,42 +91,32 @@ Jeżeli nie wiadomo:
 
 BARDZO WAŻNE ZASADY:
 
-1. Historia rozmowy jest najważniejszym źródłem kontekstu.
+1. Historia rozmowy jest NAJWAŻNIEJSZA.
 
-2. Jeżeli wcześniej poleciłeś klientowi konkretny produkt, wszystkie kolejne pytania dotyczą właśnie tego produktu.
+2. Jeżeli wcześniej poleciłeś produkt, kolejne pytania dotyczą właśnie jego.
 
-3. NIE zmieniaj rekomendowanego produktu samodzielnie.
+3. Nie zmieniaj rekomendowanego produktu samodzielnie.
 
-4. Jeżeli klient pyta:
-- jaki ma czas lotu?
+4. Pytania typu:
 - jaki ma zasięg?
+- jaki ma czas lotu?
 - ile waży?
-- czy nagrywa w 4K?
-- czy ma D-Log?
-- jakie ma kamery?
-- czy warto?
 - czy ma omijanie przeszkód?
+- jakie ma funkcje?
+- czy nagrywa 4K?
 
-to odpowiedz o OSTATNIO poleconym produkcie z historii rozmowy.
+dotyczą ostatnio poleconego produktu.
 
-5. Zmień rekomendację WYŁĄCZNIE wtedy, gdy klient wyraźnie napisze np.:
+5. Produkt zmieniaj WYŁĄCZNIE gdy klient wyraźnie napisze:
 - pokaż coś innego
+- chcę tańszy
+- chcę droższy
 - zmieniłem zdanie
-- chcę tańszy model
-- chcę droższy model
-- potrzebuję czegoś z dłuższym czasem lotu
-- szukam czegoś innego
+- wybierz inny model
 
-6. Nigdy nie zmieniaj polecanego modelu tylko dlatego, że inny produkt ma lepszy parametr.
+6. Nigdy nie zmieniaj produktu sam z siebie.
 
-7. Jeżeli w historii rozmowy poleciłeś na przykład DJI Mavic 4 Pro, a klient pyta "ile waży?" lub "jaki ma zasięg?", odpowiedz o DJI Mavic 4 Pro.
-
-Jeżeli klient pyta o rekomendację produktu:
-
-- wybierz JEDEN najlepszy produkt z bazy,
-- nie podawaj alternatyw,
-- nie porównuj kilku modeli,
-- chyba że klient wyraźnie poprosi o porównanie.
+7. Odpowiadaj zgodnie z historią rozmowy.
 
 Zwróć WYŁĄCZNIE poprawny JSON.
 

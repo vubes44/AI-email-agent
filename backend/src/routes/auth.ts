@@ -82,7 +82,7 @@ router.get("/emails", async (req, res) => {
 
       if (email.data.payload?.body?.data) {
         body = Buffer.from(email.data.payload.body.data, "base64").toString(
-          "utf-8",
+          "utf8",
         );
       } else if (email.data.payload?.parts) {
         const textPart = email.data.payload.parts.find(
@@ -90,7 +90,7 @@ router.get("/emails", async (req, res) => {
         );
 
         if (textPart?.body?.data) {
-          body = Buffer.from(textPart.body.data, "base64").toString("utf-8");
+          body = Buffer.from(textPart.body.data, "base64").toString("utf8");
         }
       }
 
@@ -105,23 +105,20 @@ router.get("/emails", async (req, res) => {
 
     res.json(emails);
   } catch (error: any) {
-    console.error("GMAIL ERROR:");
-    console.dir(error, { depth: null });
+    console.error(error);
 
     res.status(500).json({
       message: "Błąd pobierania maili",
       error: error?.message,
-      details: error?.response?.data,
     });
   }
 });
 
-router.get("/test-ai", async (req, res) => {
-  try {
-    const result = await analyzeEmail(
-      "test@test.pl",
-      "Jaki dron kupić?",
-      `
+const result = await analyzeEmail(
+  "test-thread",
+  "test@test.pl",
+  "Jaki dron kupić?",
+  `
 Dzień dobry,
 
 Szukam drona do filmowania gór.
@@ -131,16 +128,7 @@ Budżet około 5000 zł.
 Pozdrawiam
 Jan
 `,
-    );
-    res.send(result);
-  } catch (error) {
-    console.error(error);
-
-    res.status(500).json({
-      message: "Błąd Gemini",
-    });
-  }
-});
+);
 
 router.get("/latest-email-ai", async (req, res) => {
   try {
@@ -170,6 +158,7 @@ router.get("/latest-email-ai", async (req, res) => {
       if (msg.id === lastMessageId) {
         break;
       }
+
       const full = await gmail.users.messages.get({
         userId: "me",
         id: msg.id!,
@@ -187,7 +176,7 @@ router.get("/latest-email-ai", async (req, res) => {
 
     if (!message) {
       return res.json({
-        message: "Brak nowych wiadomości od klientów",
+        message: "Brak nowych wiadomości",
       });
     }
 
@@ -228,7 +217,7 @@ router.get("/latest-email-ai", async (req, res) => {
       .replace(/^>.*$/gm, "")
       .trim();
 
-    const analysis = await analyzeEmail(from, subject, body);
+    const analysis = await analyzeEmail(threadId, from, subject, body);
 
     await saveConversation(
       threadId,
@@ -239,6 +228,7 @@ router.get("/latest-email-ai", async (req, res) => {
     );
 
     await sendEmail(from, subject, analysis.email_response);
+
     await saveLastMessageId(message.id!);
 
     res.json({
@@ -250,8 +240,7 @@ router.get("/latest-email-ai", async (req, res) => {
       analysis,
     });
   } catch (error: any) {
-    console.error("LATEST EMAIL AI ERROR:");
-    console.dir(error, { depth: null });
+    console.error(error);
 
     res.status(500).json({
       message: "Błąd",
