@@ -2,6 +2,7 @@ import { db } from "../config/firebase.js";
 import { FieldValue } from "firebase-admin/firestore";
 
 export async function saveConversation(
+  threadId: string,
   email: string,
   userMessage: string,
   aiResponse: string,
@@ -9,9 +10,10 @@ export async function saveConversation(
 ) {
   await db
     .collection("conversations")
-    .doc(email)
+    .doc(threadId)
     .set(
       {
+        threadId,
         email,
         currentProduct,
 
@@ -32,8 +34,8 @@ export async function saveConversation(
     );
 }
 
-export async function getConversation(email: string) {
-  const doc = await db.collection("conversations").doc(email).get();
+export async function getConversation(threadId: string) {
+  const doc = await db.collection("conversations").doc(threadId).get();
 
   if (!doc.exists) {
     return null;

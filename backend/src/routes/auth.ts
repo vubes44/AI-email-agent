@@ -4,6 +4,7 @@ import { google } from "googleapis";
 import { analyzeEmail } from "../services/gemini.js";
 import { saveConversation } from "../services/conversations.js";
 import { sendEmail } from "../services/gmail.js";
+import { getLastMessageId, saveLastMessageId } from "../services/settings.js";
 
 const router = Router();
 
@@ -161,9 +162,14 @@ router.get("/latest-email-ai", async (req, res) => {
       maxResults: 40,
     });
 
+    const lastMessageId = await getLastMessageId();
+
     let message = null;
 
     for (const msg of listResponse.data.messages || []) {
+      if (msg.id === lastMessageId) {
+        break;
+      }
       const full = await gmail.users.messages.get({
         userId: "me",
         id: msg.id!,
@@ -230,6 +236,7 @@ router.get("/latest-email-ai", async (req, res) => {
     );
 
     await sendEmail(from, subject, analysis.email_response);
+    await saveLastMessageId(message.id!);
 
     res.json({
       email: {
