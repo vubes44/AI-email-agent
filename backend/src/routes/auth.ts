@@ -114,22 +114,6 @@ router.get("/emails", async (req, res) => {
   }
 });
 
-const result = await analyzeEmail(
-  "test-thread",
-  "test@test.pl",
-  "Jaki dron kupić?",
-  `
-Dzień dobry,
-
-Szukam drona do filmowania gór.
-
-Budżet około 5000 zł.
-
-Pozdrawiam
-Jan
-`,
-);
-
 router.get("/latest-email-ai", async (req, res) => {
   try {
     if (!savedTokens) {
@@ -187,8 +171,17 @@ router.get("/latest-email-ai", async (req, res) => {
     });
 
     const threadId = email.data.threadId!;
+    console.log("THREAD ID:", threadId);
 
     const headers = email.data.payload?.headers || [];
+
+    const messageId = headers.find((h) => h.name === "Message-ID")?.value || "";
+
+    const references =
+      headers.find((h) => h.name === "References")?.value || "";
+
+    const inReplyTo =
+      headers.find((h) => h.name === "In-Reply-To")?.value || "";
 
     const subject =
       headers.find((h) => h.name === "Subject")?.value || "Brak tematu";
@@ -227,7 +220,15 @@ router.get("/latest-email-ai", async (req, res) => {
       analysis.product_name,
     );
 
-    await sendEmail(from, subject, analysis.email_response);
+    await sendEmail(
+      from,
+      subject,
+      analysis.email_response,
+      threadId,
+      messageId,
+      references,
+      inReplyTo,
+    );
 
     await saveLastMessageId(message.id!);
 
