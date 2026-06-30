@@ -1,7 +1,15 @@
 import { google } from "googleapis";
 import { oauth2Client, savedTokens } from "../config/google.js";
 
-export async function sendEmail(to: string, subject: string, body: string) {
+export async function sendEmail(
+  to: string,
+  subject: string,
+  body: string,
+  threadId: string,
+  messageId: string,
+  references: string,
+  inReplyTo: string,
+) {
   if (!savedTokens) {
     throw new Error("Brak tokenów Google.");
   }
@@ -16,6 +24,8 @@ export async function sendEmail(to: string, subject: string, body: string) {
   const message = [
     `To: ${to}`,
     `Subject: Re: ${subject}`,
+    `In-Reply-To: ${messageId}`,
+    `References: ${references ? references + " " : ""}${messageId}`,
     "Content-Type: text/plain; charset=utf-8",
     "",
     body,
@@ -30,9 +40,10 @@ export async function sendEmail(to: string, subject: string, body: string) {
   await gmail.users.messages.send({
     userId: "me",
     requestBody: {
+      threadId,
       raw: encodedMessage,
     },
   });
 
-  console.log("📧 Mail wysłany.");
+  console.log("📧 Mail wysłany w thread:", threadId);
 }
