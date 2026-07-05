@@ -5,6 +5,7 @@ import { analyzeEmail } from "../services/gemini.js";
 import { saveConversation } from "../services/conversations.js";
 import { sendEmail } from "../services/gmail.js";
 import { getLastMessageId, saveLastMessageId } from "../services/settings.js";
+import { createOrder } from "../services/orders.js";
 
 const router = Router();
 
