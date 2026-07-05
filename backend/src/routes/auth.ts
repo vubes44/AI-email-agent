@@ -6,6 +6,7 @@ import { saveConversation } from "../services/conversations.js";
 import { sendEmail } from "../services/gmail.js";
 import { getLastMessageId, saveLastMessageId } from "../services/settings.js";
 import { createOrder } from "../services/orders.js";
+import { decreaseProductQuantity } from "../services/products.js";
 
 const router = Router();
 
