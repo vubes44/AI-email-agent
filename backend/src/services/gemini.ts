@@ -81,7 +81,29 @@ porównanie modeli, budżet lub wybór produktu:
 - ustaw intent = "product_question"
 
 Ustaw intent = "new_order" WYŁĄCZNIE wtedy,
-gdy klient jednoznacznie deklaruje zakup.
+gdy klient jednoznacznie potwierdza zakup konkretnego produktu.
+
+Przykłady:
+
+- kupuję
+- biorę
+- zamawiam
+- poproszę ten model
+- proszę przygotować zamówienie
+- chcę go kupić
+- decyduję się na zakup
+- wezmę ten model
+
+Nigdy NIE ustawiaj "new_order", jeżeli klient:
+
+- pyta o parametry,
+- pyta o cenę,
+- pyta o dostępność,
+- pyta o porównanie,
+- prosi o rekomendację,
+- dopytuje o szczegóły produktu.
+
+W takich przypadkach ustaw "product_question".
 
 Jeżeli klient pyta o produkt:
 - ustaw intent = "product_question"
@@ -139,10 +161,16 @@ Zwróć WYŁĄCZNIE poprawny JSON.
 
 Format:
 
+Format:
+
 {
   "intent": "",
   "customer_name": "",
+  "customer_email": "",
   "product_name": "",
+  "variant": "",
+  "price": 0,
+  "quantity": 1,
   "budget": null,
   "email_response": ""
 }

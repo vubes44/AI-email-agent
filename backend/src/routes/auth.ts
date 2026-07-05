@@ -213,6 +213,21 @@ router.get("/latest-email-ai", async (req, res) => {
 
     const analysis = await analyzeEmail(threadId, from, subject, body);
 
+    if (analysis.intent === "new_order") {
+      await createOrder({
+        threadId,
+
+        customer_name: analysis.customer_name,
+        customer_email: from,
+
+        product_name: analysis.product_name,
+        variant: analysis.variant,
+
+        quantity: analysis.quantity,
+        price: analysis.price,
+      });
+    }
+
     await saveConversation(
       threadId,
       from,
