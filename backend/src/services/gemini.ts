@@ -30,18 +30,18 @@ export async function analyzeEmail(
   const currentProduct = conversation?.currentProduct || "Brak";
 
   const productsContext = products
-    .map(
-      (product: any) => `
-Nazwa: ${product.name}
-Wariant: ${product.variant}
-Cena: ${product.price} PLN
-Czas lotu: ${product.flight_time} min
-Kamera: ${product.photo_resolution}
-Video: ${product.video_resolution}
-Opis: ${product.description}
-`,
-    )
-    .join("\n----------------------\n");
+    .map((product: any) => {
+      return Object.entries(product)
+        .map(([key, value]) => {
+          if (Array.isArray(value)) {
+            return `${key}: ${value.join(", ")}`;
+          }
+
+          return `${key}: ${value}`;
+        })
+        .join("\n");
+    })
+    .join("\n\n----------------------\n\n");
 
   const prompt = `
 Jesteś profesjonalnym doradcą sklepu DJI.
@@ -117,6 +117,23 @@ dotyczą ostatnio poleconego produktu.
 6. Nigdy nie zmieniaj produktu sam z siebie.
 
 7. Odpowiadaj zgodnie z historią rozmowy.
+
+8. Każdy produkt zawiera komplet parametrów technicznych.
+
+Jeżeli klient pyta o:
+- wagę,
+- zasięg transmisji,
+- prędkość,
+- kamerę,
+- sensory,
+- funkcje inteligentne,
+- czas lotu,
+- rozdzielczość,
+- dowolny parametr techniczny,
+
+odpowiadaj wyłącznie na podstawie pól przekazanych przy tym produkcie.
+
+Nie pisz, że nie masz informacji, jeżeli parametr znajduje się w danych produktu.
 
 Zwróć WYŁĄCZNIE poprawny JSON.
 
