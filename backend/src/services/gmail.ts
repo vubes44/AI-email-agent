@@ -24,8 +24,12 @@ export async function sendEmail(
   const message = [
     `To: ${to}`,
     `Subject: Re: ${subject}`,
-    `In-Reply-To: ${messageId}`,
-    `References: ${references ? references + " " : ""}${messageId}`,
+    `In-Reply-To: ${inReplyTo || messageId}`,
+    `References: ${
+      references
+        ? `${references} ${inReplyTo || messageId}`
+        : inReplyTo || messageId
+    }`,
     "Content-Type: text/plain; charset=utf-8",
     "",
     body,
