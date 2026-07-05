@@ -227,6 +227,8 @@ router.get("/latest-email-ai", async (req, res) => {
         quantity: analysis.quantity,
         price: analysis.price,
       });
+
+      await decreaseProductQuantity(analysis.product_name);
     }
 
     await saveConversation(
