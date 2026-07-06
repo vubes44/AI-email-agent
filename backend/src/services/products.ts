@@ -6,14 +6,21 @@ export async function getProducts() {
   return snapshot.docs.map((doc) => doc.data());
 }
 
-export async function decreaseProductQuantity(productName: string) {
+export async function decreaseProductQuantity(
+  productName: string,
+  variant: string,
+) {
   console.log("====================================");
   console.log("🔍 decreaseProductQuantity()");
   console.log("Szukam produktu:", productName);
+  console.log("Szukam produktu:");
+  console.log("Nazwa:", productName);
+  console.log("Wariant:", variant);
 
   const snapshot = await db
     .collection("products")
     .where("name", "==", productName)
+    .where("variant", "==", variant)
     .limit(1)
     .get();
 
