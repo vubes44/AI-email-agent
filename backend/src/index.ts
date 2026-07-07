@@ -1,6 +1,7 @@
 import express from "express";
 import authRoutes from "./routes/auth.js";
 import productsRoutes from "./routes/products.js";
+import { startEmailWatcher } from "./services/emailWatcherRunner.js";
 
 const app = express();
 
@@ -14,3 +15,5 @@ app.get("/", (req, res) => {
 app.listen(3000, () => {
   console.log("Server działa na http://localhost:3000");
 });
+
+startEmailWatcher();
