@@ -1,10 +1,14 @@
+import Layout from "./components/layout/Layout";
+
 function App() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-900">
-      <h1 className="text-5xl font-bold text-blue-500">
-        Dashboard AI DJI 🚁
+    <Layout>
+
+      <h1 className="text-4xl font-bold">
+        Dashboard
       </h1>
-    </div>
+
+    </Layout>
   );
 }
 
