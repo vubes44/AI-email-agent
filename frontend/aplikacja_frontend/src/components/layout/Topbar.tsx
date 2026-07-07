@@ -9,7 +9,7 @@ export default function Topbar() {
         </h2>
 
         <p className="text-gray-400 text-sm">
-          AI DJI Store Management
+          Zarządzanie AI sklepem z dronami DJI
         </p>
 
       </div>

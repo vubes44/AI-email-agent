@@ -5,16 +5,16 @@ export default function Sidebar() {
       <div className="h-20 flex items-center px-8 border-b border-gray-800">
 
         <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-xl">
-          🚁
+          DJI
         </div>
 
         <div className="ml-4">
           <h1 className="font-bold text-lg">
-            AI DJI Store
+            AI dla sklepu z dronami DJI
           </h1>
 
           <p className="text-xs text-gray-400">
-            Admin Dashboard
+            Dashboard administratora
           </p>
         </div>
 
@@ -27,23 +27,23 @@ export default function Sidebar() {
         </button>
 
         <button className="w-full text-left px-4 py-3 rounded-xl hover:bg-gray-800 mb-2">
-          Orders
+          Zamówienia
         </button>
 
         <button className="w-full text-left px-4 py-3 rounded-xl hover:bg-gray-800 mb-2">
-          Products
+          Produkty
         </button>
 
         <button className="w-full text-left px-4 py-3 rounded-xl hover:bg-gray-800 mb-2">
-          Conversations
+          Rozmowy z klientami
         </button>
 
         <button className="w-full text-left px-4 py-3 rounded-xl hover:bg-gray-800 mb-2">
-          Analytics
+          Analiza
         </button>
 
         <button className="w-full text-left px-4 py-3 rounded-xl hover:bg-gray-800">
-          Settings
+          Ustawienia
         </button>
 
       </nav>
