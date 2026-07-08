@@ -1,37 +1,31 @@
 import StatCard from "./StatCard";
 
 
-export default function StatsGrid() {
+interface Stat {
+  title: string;
+  value: number | string;
+  description?: string;
+}
+
+
+interface StatsGridProps {
+  stats: Stat[];
+}
+
+
+export default function StatsGrid({ stats }: StatsGridProps) {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
 
-      <StatCard
-        title="Zamówienia"
-        value={0}
-        description="Wszystkie zamówienia"
-      />
-
-
-      <StatCard
-        title="Produkty"
-        value={0}
-        description="Produkty w magazynie"
-      />
-
-
-      <StatCard
-        title="Klienci"
-        value={0}
-        description="Obsłużeni klienci"
-      />
-
-
-      <StatCard
-        title="Rozmowy AI"
-        value={0}
-        description="Automatyczne odpowiedzi"
-      />
+      {stats.map((stat, index) => (
+        <StatCard
+          key={index}
+          title={stat.title}
+          value={stat.value}
+          description={stat.description}
+        />
+      ))}
 
     </div>
   );
