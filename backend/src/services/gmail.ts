@@ -1,6 +1,10 @@
 import { google } from "googleapis";
 import { oauth2Client, savedTokens } from "../config/google.js";
 
+function encodeSubject(subject: string) {
+  return `=?UTF-8?B?${Buffer.from(subject, "utf8").toString("base64")}?=`;
+}
+
 export async function sendEmail(
   to: string,
   subject: string,
@@ -23,7 +27,7 @@ export async function sendEmail(
 
   const message = [
     `To: ${to}`,
-    `Subject: Re: ${subject}`,
+    `Subject: ${encodeSubject(`Re: ${subject}`)}`,
     `In-Reply-To: ${inReplyTo || messageId}`,
     `References: ${
       references
