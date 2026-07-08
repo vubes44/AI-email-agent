@@ -1,6 +1,6 @@
 import { google } from "googleapis";
-import { oauth2Client, savedTokens } from "../config/google.js";
-
+import { oauth2Client } from "../config/google.js";
+import * as googleConfig from "../config/google.js";
 import { analyzeEmail } from "./gemini.js";
 import { saveConversation } from "./conversations.js";
 import { sendEmail } from "./gmail.js";
@@ -9,11 +9,14 @@ import { createOrder } from "./orders.js";
 import { decreaseProductQuantity } from "./products.js";
 
 export async function checkLatestEmail() {
-  if (!savedTokens) {
+  console.log("🔄 Sprawdzam Gmail...");
+
+  if (!googleConfig.savedTokens) {
+    console.log("❌ Brak tokenów Google");
     return;
   }
 
-  oauth2Client.setCredentials(savedTokens);
+  oauth2Client.setCredentials(googleConfig.savedTokens);
 
   const gmail = google.gmail({
     version: "v1",
