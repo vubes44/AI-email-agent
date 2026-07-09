@@ -1,5 +1,4 @@
 interface ProductCardProps {
-  image: string;
   name: string;
   variant: string;
   price: number;
@@ -9,7 +8,6 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({
-  image,
   name,
   variant,
   price,
@@ -19,14 +17,6 @@ export default function ProductCard({
 }: ProductCardProps) {
   return (
     <div className="bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-lg transition duration-300">
-
-      <div className="h-52 bg-gray-100 flex items-center justify-center">
-        <img
-          src={image}
-          alt={name}
-          className="max-h-full max-w-full object-contain p-4"
-        />
-      </div>
 
       <div className="p-5 space-y-4">
 
