@@ -86,7 +86,7 @@ export default function OrderCard({
           <div className="text-right">
 
             <p className="text-sm text-gray-500">
-              Wartość
+              Cena
             </p>
 
             <p className="text-xl font-bold">
