@@ -24,3 +24,12 @@ export async function createOrder(order: any) {
 
   return docRef.id;
 }
+
+export async function getOrders() {
+  const snapshot = await db
+    .collection("orders")
+    .orderBy("created_at", "desc")
+    .get();
+
+  return snapshot.docs.map((doc) => doc.data());
+}
