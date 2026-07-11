@@ -43,3 +43,9 @@ export async function getConversation(threadId: string) {
 
   return doc.data();
 }
+
+export async function getConversations() {
+  const snapshot = await db.collection("conversations").get();
+
+  return snapshot.docs.map((doc) => doc.data());
+}
