@@ -3,11 +3,13 @@ import authRoutes from "./routes/auth.js";
 import productsRoutes from "./routes/products.js";
 import { startEmailWatcher } from "./services/emailWatcherRunner.js";
 import ordersRoutes from "./routes/orders.js";
+import conversationsRoutes from "./routes/conversations.js";
 
 const app = express();
 
 app.use("/auth", authRoutes);
 app.use("/products", productsRoutes);
+app.use("/conversations", conversationsRoutes);
 app.use("/orders", ordersRoutes);
 
 app.get("/", (req, res) => {
