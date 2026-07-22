@@ -4,11 +4,13 @@ import productsRoutes from "./routes/products.js";
 import { startEmailWatcher } from "./services/emailWatcherRunner.js";
 import ordersRoutes from "./routes/orders.js";
 import conversationsRoutes from "./routes/conversations.js";
+import dashboardRoutes from "./routes/dashboard.js";
 
 const app = express();
 
 app.use("/auth", authRoutes);
 app.use("/products", productsRoutes);
+app.use("/dashboard", dashboardRoutes);
 app.use("/conversations", conversationsRoutes);
 app.use("/orders", ordersRoutes);
 
