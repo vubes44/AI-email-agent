@@ -1,101 +1,89 @@
 interface OrderCardProps {
-  orderId: string;
-  customerName: string;
-  customerEmail: string;
-  productName: string;
+  id: string;
+  customer_name: string | null;
+  customer_email: string;
+  threadId: string;
+  product_name: string;
   variant: string;
   quantity: number;
   price: number;
   status: string;
+  created_at: {
+    _seconds: number;
+    _nanoseconds: number;
+  };
 }
 
 export default function OrderCard({
-  orderId,
-  customerName,
-  customerEmail,
-  productName,
+  id,
+  customer_name,
+  customer_email,
+  product_name,
   variant,
   quantity,
   price,
   status,
+  created_at,
 }: OrderCardProps) {
-  const statusColor =
-    status === "Nowe"
-      ? "bg-blue-100 text-blue-700"
-      : status === "W realizacji"
-      ? "bg-yellow-100 text-yellow-700"
-      : status === "Wysłane"
-      ? "bg-green-100 text-green-700"
-      : "bg-gray-100 text-gray-700";
+  const date = new Date(created_at._seconds * 1000);
 
   return (
-    <div className="bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-lg transition duration-300">
+    <div className="bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-lg transition p-5">
 
-      <div className="p-5 space-y-4">
+      <div className="flex items-center justify-between mb-4">
 
-        <div className="flex justify-between items-start">
+        <h2 className="text-lg font-bold text-gray-900">
+          Zamówienie #{id.slice(0, 6)}
+        </h2>
 
-          <div>
-            <h2 className="text-xl font-bold text-gray-900">
-              Zamówienie #{orderId}
-            </h2>
+        <span
+          className={`px-3 py-1 rounded-full text-sm font-semibold ${
+            status === "new"
+              ? "bg-green-100 text-green-700"
+              : "bg-gray-100 text-gray-700"
+          }`}
+        >
+          {status}
+        </span>
 
-            <p className="text-gray-500">
-              {customerName}
-            </p>
+      </div>
 
-            <p className="text-sm text-gray-400">
-              {customerEmail}
-            </p>
-          </div>
+      <div className="space-y-2 text-sm">
 
-          <span
-            className={`px-3 py-1 rounded-full text-sm font-semibold ${statusColor}`}
-          >
-            {status}
-          </span>
+        <p>
+          <span className="font-semibold">Klient:</span>{" "}
+          {customer_name || "Brak danych"}
+        </p>
 
-        </div>
+        <p>
+          <span className="font-semibold">Email:</span>{" "}
+          {customer_email}
+        </p>
 
-        <div>
+        <p>
+          <span className="font-semibold">Produkt:</span>{" "}
+          {product_name}
+        </p>
 
-          <p className="font-semibold text-gray-900">
-            {productName}
-          </p>
+        <p>
+          <span className="font-semibold">Wariant:</span>{" "}
+          {variant}
+        </p>
 
-          <p className="text-gray-500">
-            {variant}
-          </p>
+        <p>
+          <span className="font-semibold">Ilość:</span>{" "}
+          {quantity}
+        </p>
 
-        </div>
+        <p>
+          <span className="font-semibold">Cena:</span>{" "}
+          {price} zł
+        </p>
 
-        <div className="flex justify-between items-center">
-
-          <div>
-
-            <p className="text-sm text-gray-500">
-              Ilość
-            </p>
-
-            <p className="font-semibold">
-              {quantity} szt.
-            </p>
-
-          </div>
-
-          <div className="text-right">
-
-            <p className="text-sm text-gray-500">
-              Cena
-            </p>
-
-            <p className="text-xl font-bold">
-              {price} PLN
-            </p>
-
-          </div>
-
-        </div>
+        <p>
+          <span className="font-semibold">Data:</span>{" "}
+          {date.toLocaleString("pl-PL")}
+        </p>
 
       </div>
 
