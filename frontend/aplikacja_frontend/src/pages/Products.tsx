@@ -39,6 +39,9 @@ export default function Products() {
     async function loadProducts() {
       try {
         const data = await getProducts();
+
+        console.log("PRODUCTS:", data);
+
         setProducts(data);
       } catch (error) {
         console.error(error);
