@@ -1,12 +1,19 @@
 import ConversationCard from "./ConversationCard";
 
+interface Message {
+  role: string;
+  content: string;
+  createdAt: {
+    _seconds: number;
+    _nanoseconds: number;
+  };
+}
+
 interface Conversation {
   threadId: string;
-  customerName: string;
-  customerEmail: string;
-  lastMessage: string;
-  productName: string;
-  updatedAt: string;
+  email: string;
+  currentProduct: string;
+  messages: Message[];
 }
 
 interface ConversationsGridProps {
@@ -17,20 +24,16 @@ export default function ConversationsGrid({
   conversations,
 }: ConversationsGridProps) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-
+    <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
       {conversations.map((conversation) => (
         <ConversationCard
           key={conversation.threadId}
           threadId={conversation.threadId}
-          customerName={conversation.customerName}
-          customerEmail={conversation.customerEmail}
-          lastMessage={conversation.lastMessage}
-          productName={conversation.productName}
-          updatedAt={conversation.updatedAt}
+          email={conversation.email}
+          currentProduct={conversation.currentProduct}
+          messages={conversation.messages}
         />
       ))}
-
     </div>
   );
 }
