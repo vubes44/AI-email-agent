@@ -1,88 +1,85 @@
+interface Message {
+  role: string;
+  content: string;
+  createdAt: {
+    _seconds: number;
+    _nanoseconds: number;
+  };
+}
+
 interface ConversationCardProps {
   threadId: string;
-  customerName: string;
-  customerEmail: string;
-  lastMessage: string;
-  productName: string;
-  updatedAt: string;
+  email: string;
+  currentProduct: string;
+  messages: Message[];
 }
 
 export default function ConversationCard({
   threadId,
-  customerName,
-  customerEmail,
-  lastMessage,
-  productName,
-  updatedAt,
+  email,
+  currentProduct,
+  messages,
 }: ConversationCardProps) {
+  const lastMessage = messages[messages.length - 1];
+
+  const lastMessageDate = lastMessage
+    ? new Date(lastMessage.createdAt._seconds * 1000)
+    : null;
+
   return (
-    <div className="bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-lg transition duration-300">
+    <div className="bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-lg transition p-5">
 
-      <div className="p-5 space-y-4">
+      <div className="flex items-center justify-between mb-4">
+
+        <h2 className="text-lg font-bold text-gray-900">
+          {email}
+        </h2>
+
+        <span className="text-xs text-gray-500">
+          {threadId.slice(0, 8)}...
+        </span>
+
+      </div>
+
+      <div className="space-y-3 text-sm">
 
         <div>
-
-          <h2 className="text-xl font-bold text-gray-900">
-            {customerName}
-          </h2>
-
-          <p className="text-sm text-gray-500">
-            {customerEmail}
+          <p className="text-gray-500">
+            Aktualny produkt
           </p>
 
+          <p className="font-semibold">
+            {currentProduct || "Brak"}
+          </p>
         </div>
 
         <div>
-
-          <p className="text-sm text-gray-500">
-            Produkt
-          </p>
-
-          <p className="font-semibold text-gray-900">
-            {productName}
-          </p>
-
-        </div>
-
-        <div>
-
-          <p className="text-sm text-gray-500 mb-1">
+          <p className="text-gray-500">
             Ostatnia wiadomość
           </p>
 
-          <p className="text-gray-700 line-clamp-3">
-            {lastMessage}
+          <p className="line-clamp-4 text-gray-800">
+            {lastMessage?.content || "Brak wiadomości"}
           </p>
+        </div>
+
+        <div className="flex items-center justify-between pt-2 border-t border-gray-100">
+
+          <span className="text-gray-500">
+            Liczba wiadomości
+          </span>
+
+          <span className="font-semibold">
+            {messages.length}
+          </span>
 
         </div>
 
-        <div className="flex justify-between items-center pt-2 border-t border-gray-100">
-
-          <div>
-
-            <p className="text-xs text-gray-400">
-              Thread ID
-            </p>
-
-            <p className="text-sm font-medium text-gray-700 truncate max-w-[180px]">
-              {threadId}
-            </p>
-
+        {lastMessageDate && (
+          <div className="text-xs text-gray-400">
+            {lastMessageDate.toLocaleString("pl-PL")}
           </div>
-
-          <div className="text-right">
-
-            <p className="text-xs text-gray-400">
-              Ostatnia aktywność
-            </p>
-
-            <p className="text-sm font-medium text-gray-700">
-              {updatedAt}
-            </p>
-
-          </div>
-
-        </div>
+        )}
 
       </div>
 
